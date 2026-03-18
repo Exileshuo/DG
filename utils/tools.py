@@ -130,7 +130,7 @@ def get_timeseries(subject_list, args):
     atlas_name = args.atlas
 
     for i in range(len(subject_list)):
-        print("\nStart reading timeseries files.\n")
+        #print("\nStart reading timeseries files.\n")
         if dataset == "ABIDE":
             ro_file = [f for f in os.listdir(data_folder) if
                        f.endswith(subject_list[i] + '_rois_' + atlas_name + '.1D')]
@@ -140,7 +140,7 @@ def get_timeseries(subject_list, args):
         else:
             raise ValueError("No such dataset!")
         fl = os.path.join(data_folder, ro_file[0])
-        print("\nReading timeseries file %s\n" % fl)
+        #print("\nReading timeseries file %s\n" % fl)
         timeseries.append(np.loadtxt(fl, skiprows=0))
     print("Reading timeseries files finished!")
 

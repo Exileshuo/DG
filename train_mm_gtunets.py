@@ -151,7 +151,7 @@ if __name__ == "__main__":
         early_stopping = EarlyStopping(patience=opt.early_stop, verbose=True)
         fold_model_path = opt.ckpt_path + "/fold{}.pth".format(fold)
         if opt.log_save:
-            writer = SummaryWriter(f"./log/{opt.model}_{opt.dataset}_{opt.atlas}_log/{fold}")
+            writer = SummaryWriter(f"{opt.logdir}/{opt.model}_{opt.dataset}_{opt.atlas}_log/{fold}")
         if opt.train == 1:
             # Recording start time
             start.record()

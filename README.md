@@ -1,6 +1,5 @@
 # MM-GTUNets: Unified Multi-Modal Graph Deep Learning for Brain Disorders Prediction
 
-![MM-GTUNets](./MM_GTUNets.png)
 
 本项目是论文 "[MM-GTUNets: Unified Multi-Modal Graph Deep Learning for Brain Disorders Prediction](https://ieeexplore.ieee.org/document/XXXXXXXX)" 的 PyTorch 实现。
 

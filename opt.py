@@ -5,6 +5,18 @@ import numpy as np
 import torch
 
 
+def str2bool(v):
+    """Convert string to boolean for argparse"""
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 def choose_dataset(dataset):
     data_dict = {}
     if dataset == "ABIDE":
@@ -82,7 +94,7 @@ class OptInit:
         # train parameter
         self.parser.add_argument('--use_cpu', action='store_true', help='use cpu?')
         self.parser.add_argument('--gpu_id', type=int, default=0, help='gpu_id')
-        self.parser.add_argument('--train', default=True, type=bool, help='train(default) or test')
+        self.parser.add_argument('--train', default=1, type=int, help='train(1) or test(0)')
         self.parser.add_argument('--seed', type=int, default=911, help='random state')
         self.parser.add_argument('--early_stop', type=int, default=100, help='early stop patience')
         self.parser.add_argument('--lr', default=1e-4, type=float, help='initial model learning rate')
@@ -92,9 +104,10 @@ class OptInit:
         self.parser.add_argument('--folds', default=10, type=int, help='cross validation folds')
 
         # train setting
-        self.parser.add_argument('--log_save', type=bool, default=False, help='save log or not')
-        self.parser.add_argument('--model_save', type=bool, default=True, help='save model or not')
-        self.parser.add_argument('--result_save', type=bool, default=True, help='save result or not')
+        self.parser.add_argument('--log_save', type=str2bool, default=False, help='save log or not')
+        self.parser.add_argument('--logdir', type=str, default='./log', help='directory to save tensorboard logs')
+        self.parser.add_argument('--model_save', type=str2bool, default=True, help='save model or not')
+        self.parser.add_argument('--result_save', type=str2bool, default=True, help='save result or not')
         self.parser.add_argument('--print_freq', default=5, type=int, help='print frequency')
         self.parser.add_argument('--ckpt_path', type=str, default=rf'./save_model/{model}_{dataset}_{atlas}/',
                                  help='checkpoint path to save trained models')
